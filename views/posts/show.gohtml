@@ -1,0 +1,36 @@
+{{define "posts/show"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content post">
+  <div class="container">
+    {{if not .Post.Published}}
+      <div class="alert alert-danger">
+        <p>Запись не опубликована</p>
+      </div>
+    {{end}}
+
+    {{template "flashes" .}}
+
+    <h1>
+      {{.Post.Title}}
+      {{if isUserAuthenticated $.Context}}
+        <a href="/admin/posts/{{.Post.ID}}/edit" class="btn btn-outline-primary">Редактировать</a>
+      {{end}}
+    </h1>
+    
+    {{noescape .Post.Content}}
+
+    {{with .Posts}}
+      <section class="blog-previews">
+          <h2>Последние публикации</h2>
+          {{range .}}
+              <h5><a href="{{.URL}}">{{.Title}}</a></h5>
+          {{end}}
+      </section>
+    {{end}}
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}

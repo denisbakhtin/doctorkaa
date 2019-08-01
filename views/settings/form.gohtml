@@ -1,0 +1,52 @@
+{{define "settings/form"}}
+{{template "admin_header" .}}
+{{template "admin_navbar" .}}
+
+<div class="body-content post">
+  <div class="container">
+    {{template "flashes" .}}
+
+    <h1>{{.Title}}</h1>
+
+    <form method="post">
+      <fieldset>
+        <legend>{{.Title}}</legend>
+        {{template "flashes" .}}
+        <input type="hidden" name="id" value="{{.Setting.ID}}">
+        <input type="hidden" name="_csrf" value="{{.Csrf}}">
+        
+        <div class="form-row form-group">
+          <div class="col-4">
+            <label class="control-label" for="name">Название</label>
+            <input id="name" name="name" value="{{.Setting.Name}}" class="form-control" required="" >
+          </div>
+          <div class="col-6">
+            <label class="control-label" for="description">Описание</label>
+            <input id="description" name="description" value="{{.Setting.Description}}" class="form-control" required="" >
+          </div>
+          <div class="col-2">
+            <label class="control-label" for="content_type">Тип</label>
+            <select id="content_type" name="content_type" class="form-control" onchange="toggleCkEditor();">
+              <option value="text" {{if eq .Setting.ContentType "text"}}selected{{end}}>Текст</option>
+              <option value="html" {{if eq .Setting.ContentType "html"}}selected{{end}}>HTML</option>
+            </select> 
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="content">Значение</label>
+          <textarea id="content" name="content" class="form-control">{{.Setting.Content}}</textarea>
+        </div>
+        
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Сохранить">
+          <a class="btn btn-outline-secondary" href="/admin/settings">Отмена</a>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<script src="/vendor/ckeditor.js"></script>
+{{template "footer" .}}
+{{end}}

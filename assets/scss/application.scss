@@ -1,0 +1,503 @@
+@import "./my_variables";
+@import "../../node_modules/bootstrap/scss/_functions.scss";
+@import "../../node_modules/bootstrap/scss/_variables.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/select2/dist/css/select2.css";
+
+@media (min-width: 768px) {
+  .dl-horizontal {
+    overflow: hidden;
+
+    dt {
+      float: left;
+      width: 160px;
+      clear: left;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    dd {
+      margin-left: 180px;
+    }
+  }
+}
+
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  background-color: $footer-bg;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+  padding: 30px 15px 15px;
+  min-height: calc(100vh - 195px);
+  background-color: $body-bg;
+
+  &.post {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.contacts .body-content {
+  min-height: 50vh;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+  width: 100%;
+}
+
+input[type="submit"],
+input[type="checkbox"] {
+  width: auto;
+}
+
+textarea {
+  min-height: 10em;
+}
+
+
+
+/* buttons and links extension to use brackets: [ click me ] */
+.btn-bracketed::before {
+  display: inline-block;
+  content: "[";
+  padding-right: 0.5em;
+}
+
+.btn-bracketed::after {
+  display: inline-block;
+  content: "]";
+  padding-left: 0.5em;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+  width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+
+  /* Hide captions */
+  .carousel-caption {
+    display: none;
+  }
+}
+
+.error-page {
+  h2 {
+    font-size: 60px;
+  }
+
+  h3 {
+    font-size: 240px;
+  }
+}
+
+#footer {
+  border-top: none;
+  padding-top: 15px;
+  color: $footer-color;
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+  margin-left: 0;
+}
+
+.sup-navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #5499c9;
+  background-color: $body-bg;
+
+  .container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  .left {
+    img {
+      height: 40px;
+      vertical-align: bottom;
+      margin-top: -10px;
+      margin-bottom: -5px;
+      margin-right: 10px;
+    }
+  }
+
+  .moto {
+    line-height: 1em;
+  }
+
+  .phone {
+    font-weight: 700;
+    font-size: 29px;
+    white-space: nowrap;
+    line-height: 1em;
+    margin-left: 10px;
+  }
+
+  .social-icons {
+    text-align: right;
+    margin-left: 1em;
+    white-space: nowrap;
+
+    a {
+      color: $body-bg;
+
+      .fa {
+        font-size: 22px;
+        background: #fff;
+        border-radius: 30px;
+        padding: 6px 11px;
+
+        &.fa-vk {
+          padding: 6px 6px;
+        }
+
+        &.fa-twitter {
+          padding: 6px 7px;
+        }
+
+        &.fa-facebook {
+          padding: 6px 11px;
+        }
+
+        &.fa-odnoklassniki {
+          padding: 6px 10px;
+        }
+      }
+
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.container-fluid {
+  max-width: 1200px;
+}
+
+.web .navbar {
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  font-family: 'Open', sans-serif;
+  font-size: 18px;
+  border: none;
+  background: $navbar-bg;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  li {
+    a {
+      line-height: $navbar-height;
+      height: $navbar-height;
+      padding: 0 1em;
+      transition: all ease 0.3s;
+    }
+
+    &:hover,
+    &:focus,
+    &.active {
+      a {
+        background: darken($navbar-bg, 10%);
+      }
+    }
+  }
+
+  .navbar-brand {
+    line-height: $navbar-height;
+    height: $navbar-height;
+    font-size: 30px;
+    padding: 0;
+  }
+
+  .navbar-toggler-right {
+    position: relative;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  form,
+  .navbar-auth-links {
+
+    a,
+    button {
+      line-height: $navbar-height;
+      height: $navbar-height;
+      font-size: 16px;
+      color: darken($navbar-dark-color, 10%) !important;
+      padding: 0 1em;
+    }
+
+    button:hover {
+      background: darken($navbar-bg, 10%);
+      text-decoration: none;
+    }
+  }
+}
+
+.home .navbar {
+  margin-bottom: 0;
+}
+
+/* #337ab7 */
+
+.carousel {
+  margin: -30px -15px 40px;
+
+  .carousel-inner {
+    .carousel-item {
+      height: 500px;
+      background-size: cover;
+      background-position: center top;
+
+      .carousel-caption {
+        position: absolute;
+        color: #224055;
+        text-shadow: none;
+        font-weight: 300;
+        left: 15px;
+        right: 15px;
+        bottom: 100px;
+
+        p {
+          font-size: 400%;
+          line-height: 1em;
+          text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    background-image: none;
+    text-shadow: none;
+    width: 10%;
+    color: #224055;
+    opacity: 0.3;
+    transition: opacity ease 0.3s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    .fa {
+      position: absolute;
+      top: 50%;
+      margin-top: -5px;
+      font-size: 30px;
+    }
+  }
+
+  .carousel-indicators {
+    li {
+      border: 1px solid #224055;
+
+      &.active {
+        background-color: #224055;
+      }
+    }
+  }
+}
+
+//fade effect
+.carousel-fade {
+  .carousel-inner {
+    .carousel-item {
+      transition-property: opacity;
+    }
+
+    .carousel-item,
+    .active.carousel-item-left,
+    .active.carousel-item-right {
+      opacity: 0;
+    }
+
+    .active,
+    .carousel-item-next.carousel-item-left,
+    .carousel-item-prev.carousel-item-right {
+      opacity: 1;
+    }
+
+    .carousel-item-next,
+    .carousel-item-prev,
+    .active.carousel-item-left,
+    .active.carousel-item-right {
+      left: 0;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    z-index: 2;
+  }
+}
+
+.navbar-bg {
+  background: $navbar-bg;
+}
+
+.admin {
+  padding-top: 50px;
+
+  .navbar {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+    li {
+
+      &:hover,
+      &:focus,
+      &.active {
+        a {
+          background: lighten($inverse-bg, 10%);
+        }
+      }
+    }
+  }
+
+  .body-content {
+    min-height: calc(100vh - 100px);
+  }
+
+  textarea {
+    min-height: 5em;
+  }
+
+  .ck-editor__editable {
+    min-height: 300px;
+  }
+}
+
+.login,
+.register,
+.forgot,
+.reset {
+  .auth-form-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.shrink {
+  white-space: nowrap;
+  width: 1px;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.table {
+  td {
+    border-top: 1px solid lighten(#636c72, 35%);
+  }
+
+  th {
+    border-top: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $primary;
+  margin-bottom: 0.5em;
+}
+
+.blog-previews {
+  background: $body-bg;
+  padding: 30px 0;
+}
+
+.blog-preview {
+  margin-top: 2em;
+}
+
+#map-canvas {
+  height: 450px;
+  width: 100%;
+}
+
+.home-about {
+  background-image: url("/images/home_about.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 140%;
+  padding: 30px 0;
+
+  h1,
+  h2,
+  h3 {
+    font-size: 3rem;
+    color: $body-color;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+}
+
+
+
+@media (max-width: 992px) {
+  .carousel .carousel-inner .carousel-item .carousel-caption p {
+    font-size: 300%;
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel-caption {
+    display: block;
+  }
+
+  .carousel .carousel-inner .carousel-item .carousel-caption p {
+    font-size: 250%;
+  }
+}
+
+.slide-preview {
+  max-height: 50px;
+  width: auto;
+}
+
+.w-400 {
+  max-width: 400px;
+}

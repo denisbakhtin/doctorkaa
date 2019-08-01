@@ -1,0 +1,15 @@
+{{define "errors/404"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content error-page">
+  <div class="container text-center">
+    <h2>СТРАНИЦА НЕ НАЙДЕНА</h2>
+    <h3>404</h3>
+    <p>Страница, которую Вы запрашивали, не найдена - это могло произойти из-за ошибки в написании адреса или ее удалении администратором.</p>
+    <p>Перейти на <a href="/">Главную страницу</a> сайта.</p>
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}

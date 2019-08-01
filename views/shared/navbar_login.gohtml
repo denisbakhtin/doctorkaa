@@ -1,0 +1,25 @@
+{{define "navbar_login"}}
+  {{if isUserAuthenticated $.Context}}
+    <form action="/signout" method="get" id="logoutForm" class="form-inline">
+        <ul class="navbar-nav navbar-auth-links">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/pages" title="Панель администратора">Настройки</a>
+            </li>
+            <li class="nav-item">
+                <button type="submit" class="btn btn-link text-warning">Выйти</button>
+            </li>
+        </ul>
+    </form>
+  {{else}}
+    <ul class="navbar-nav navbar-auth-links">
+        {{if signUpEnabled}}
+            <li class='nav-item {{isActiveLink $.Context "/signup"}}'>
+                <a class="nav-link" href="/signup">Регистрация</a>
+            </li>
+        {{end}}
+        <li class='nav-item {{isActiveLink $.Context "/signin"}}'>
+            <a class="nav-link" href="/signin">Вход</a>
+        </li>
+    </ul>
+  {{end}}
+{{end}}

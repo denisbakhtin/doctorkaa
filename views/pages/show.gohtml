@@ -1,0 +1,46 @@
+{{define "pages/show"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content">
+  <div class="container">
+    {{if not .Page.Published}}
+      <div class="alert alert-danger">
+        <p>Страница не опубликована</p>
+      </div>
+    {{end}}
+
+    {{template "flashes" .}}
+
+    {{if .IsContactPage}}
+      <div class="row">
+        <div class="col-md-4">
+          <h1>
+            {{.Page.Title}}
+            {{if isUserAuthenticated $.Context}}
+              <a href="/admin/pages/{{.Page.ID}}/edit" class="btn btn-outline-primary">Редактировать</a>
+            {{end}}
+          </h1>
+
+          {{noescape .Page.Content}}
+        </div>
+        <div class="col-md-8">
+            <h1>Связаться с врачом</h1>
+            {{template "contact_form" .}}
+        </div>
+      </div>
+    {{else}}
+      <h1>
+        {{.Page.Title}}
+        {{if isUserAuthenticated $.Context}}
+          <a href="/admin/pages/{{.Page.ID}}/edit" class="btn btn-outline-primary">Редактировать</a>
+        {{end}}
+      </h1>
+      
+      {{noescape .Page.Content}}
+    {{end}}
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}

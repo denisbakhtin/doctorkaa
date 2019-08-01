@@ -1,0 +1,32 @@
+{{define "auth/reset"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content reset">
+  <div class="container">
+    {{template "flashes" .}}
+    
+    <section class="auth-form-wrapper">
+      <h1>{{.Title}}</h1>
+      <form action="/pr" method="post">
+        <input type="hidden" name="_csrf" value="{{.Csrf}}">
+        <input type="hidden" name="hash" value="{{.Hash}}">
+        <hr />
+        <div class="form-group">
+            <label for="password" class="control-label">Пароль</label>
+            <input name="password" id="password" type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password_confirm" class="control-label">Подтверждение пароля</label>
+            <input name="password_confirm" id="password_confirm" type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}

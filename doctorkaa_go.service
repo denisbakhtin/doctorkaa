@@ -1,0 +1,15 @@
+[Unit]
+Description=Doctorkaa Web Server
+After=network.target
+After=postgresql.service
+
+[Service]
+User=tabula
+WorkingDirectory=/home/tabula/go/src/github.com/denisbakhtin/doctorkaa
+ExecStart=/home/tabula/go/src/github.com/denisbakhtin/doctorkaa/doctorkaa-go -mode=release
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

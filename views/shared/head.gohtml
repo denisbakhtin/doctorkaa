@@ -1,0 +1,24 @@
+{{define "head"}}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>
+		{{with .Title}}
+			{{.}} - {{getSetting "brand"}}
+		{{else}}
+			{{getSetting "brand"}}
+		{{end}}
+	</title>
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&amp;subset=cyrillic" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/main.css">
+    <meta name="keywords" content="{{.MetaKeywords}}">
+    <meta name="description" content="{{.MetaDescription}}">
+	<!-- scripts -->
+	{{if .Csrf}}
+		<script type="text/javascript">window.csrf_token="{{.Csrf}}";</script>
+	{{end}}
+	<script src="/assets/application.js"></script>
+</head>
+{{end}}

@@ -1,0 +1,50 @@
+{{define "navbar"}}
+  <div class="sup-navbar">
+    <div class="container">
+      {{$facebook := getSetting "facebook"}}
+      {{$vk := getSetting "vk"}}
+      {{$twitter := getSetting "twitter"}}
+      {{$ok := getSetting "ok"}}
+
+      <div class="left">
+          <a href="/"><img class="img-fluid" src="/images/logo.png" alt="Доктор Каргальцев А." /></a>
+          <span class="moto d-none d-xl-inline-block">{{getSetting "header_text"}}</span>
+          <span class="phone">{{getSetting "phone"}}</span>
+      </div>
+
+      <div class="right social-icons">
+          {{if $vk}}
+              <a target="_blank" href="{{$vk}}"><i class="fa fa-vk"></i></a>
+          {{end}}
+          {{if $facebook}}
+              <a target="_blank" href="{{$facebook}}"><i class="fa fa-facebook"></i></a>
+          {{end}}
+          {{if $twitter}}
+              <a target="_blank" href="{{$twitter}}"><i class="fa fa-twitter"></i></a>
+          {{end}}
+          {{if $ok}}
+              <a target="_blank" href="{{$ok}}"><i class="fa fa-odnoklassniki"></i></a>
+          {{end}}
+      </div>
+    </div>
+  </div>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-bg">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+              {{range navbarMenuItems}}
+                <li class="nav-item {{isActiveLink $.Context .URL}}">
+                  <a class="nav-link" href="{{.URL}}">{{.Title}}</a>
+                </li>
+              {{end}}
+            </ul>
+            {{template "navbar_login" .}}
+        </div>
+    </div>
+  </nav>
+{{end}}

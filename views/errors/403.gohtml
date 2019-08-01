@@ -1,0 +1,15 @@
+{{define "errors/403"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content error-page">
+  <div class="container text-center">
+    <h2>НЕ ДОСТАТОЧНО ПРАВ ДОСТУПА</h2>
+    <h3>403</h3>
+    <p>Доступ запрещен. Вероятно, Вы попытались запросить доступ к странице, требующей авторизации в системе.</p>
+    <p>Перейти на <a href="/">Главную страницу</a> сайта.</p>
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}

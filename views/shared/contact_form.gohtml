@@ -1,0 +1,36 @@
+{{define "contact_form"}}
+    <form method="post" action="/feedback">
+        <input type="hidden" name="_csrf" value="{{.Csrf}}">
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label for="name" class="control-label">Имя</label>
+                <input id="name" name="name" class="form-control" required />
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="email" class="control-label">Эл. почта</label>
+                <input name="email" id="email" class="form-control" required />
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="phone" class="control-label">Телефон</label>
+                <input name="phone" id="phone" class="form-control" />
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="message" class="control-label">Сообщение</label>
+                <textarea name="message" id="message" class="form-control" required></textarea>
+            </div>
+            {{with .FeedbackError}}
+                <div class="form-group col-sm-12">
+                    <div class="text-danger">{{.}}</div>
+                </div>
+            {{end}}
+            {{with .FeedbackSuccess}}
+                <div class="form-group col-sm-12">
+                    <div class="text-success">{{.}}</div>
+                </div>
+            {{end}}
+            <div class="form-group col-sm-12">
+                <input type="submit" value="Отправить" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+{{end}}

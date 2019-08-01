@@ -1,0 +1,32 @@
+{{define "posts/public_index"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content">
+  <div class="container">
+
+    {{template "flashes" .}}
+
+    <h1>
+      {{.Title}}
+      {{if isUserAuthenticated $.Context}}
+        <a href="/admin/posts" class="btn btn-outline-primary">Редактировать</a>
+      {{end}}
+    </h1>
+    
+    {{range .Posts}}
+      <div class="blog-preview">
+        <h3><a href="{{.URL}}">{{.Title}}</a></h3>
+        <p>
+            {{.Excerpt}}...
+            <a href="{{.URL}}" class="btn btn-sm btn-outline-primary">Читать далее</a>
+        </p>
+      </div>
+    {{else}}
+      <p class="text-muted">Пока ни одной записи не опубликовано.</p>
+    {{end}}
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}

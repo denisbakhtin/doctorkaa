@@ -1,0 +1,16 @@
+{{define "emails/feedback"}}
+<html>
+  <head>
+  </head>
+  <body>
+
+    <p>Имя: {{.Feedback.Name}}.</p>
+    <p>Эл. почта: {{.Feedback.Email}}.</p>
+    <p>Телефон: {{.Feedback.Phone}}.</p>
+    <p>Сообщение: {{.Feedback.Message}}.</p>
+
+    <p>&nbsp;</p>
+    <p>Данное письмо было отправлено автоматически, отвечать на него не нужно.</p>
+  </body>
+</html>
+{{end}}

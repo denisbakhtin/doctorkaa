@@ -1,0 +1,29 @@
+{{define "home/show"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content home">
+  {{template "carousel" .}}
+
+  <div class="container">
+    {{template "flashes" .}}
+    
+    <h1 class="text-center">
+      {{.Page.Title}}
+      {{if isUserAuthenticated $.Context}}
+        <a href="/admin/pages/{{.Page.ID}}/edit" class="btn btn-outline-primary">Редактировать</a>
+      {{end}}
+    </h1>
+    
+    {{noescape .Page.Content}}
+  </div>
+</div>
+
+<section class="home-about">
+  <div class="container text-center">
+    {{getSetting "home_about"}}
+  </div>
+</section>
+
+{{template "footer" .}}
+{{end}}

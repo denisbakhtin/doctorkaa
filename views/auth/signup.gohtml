@@ -1,0 +1,35 @@
+{{define "auth/signup"}}
+{{template "header" .}}
+{{template "navbar" .}}
+
+<div class="body-content register">
+  <div class="container">
+    {{template "flashes" .}}
+    
+    <section class="auth-form-wrapper">
+      <h1>{{.Title}}</h1>
+      <form action="/signup" method="post">
+        <input type="hidden" name="_csrf" value="{{.Csrf}}">
+        <hr />
+        <div class="form-group">
+            <label for="email" class="control-label">Эл. почта</label>
+            <input name="email" id="email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password" class="control-label">Пароль</label>
+            <input name="password" id="password" type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password_confirm" class="control-label">Подтверждение пароля</label>
+            <input name="password_confirm" id="password_confirm" type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}

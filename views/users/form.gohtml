@@ -1,0 +1,53 @@
+{{define "users/form"}}
+{{template "admin_header" .}}
+{{template "admin_navbar" .}}
+
+<div class="body-content post">
+  <div class="container">
+    {{template "flashes" .}}
+
+    <h1>{{.Title}}</h1>
+
+    <form method="post" data-parsley-validate>
+      {{template "flashes" .}}
+      <input type="hidden" name="id" value="{{.User.ID}}" >
+      <input type="hidden" name="_csrf" value="{{.Csrf}}">
+
+      <div class="form-group">
+        <label class="control-label" for="email">Электронная почта</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+          </div>
+          <input id="email" name="email" value="{{.User.Email}}" class="form-control w-400" required data-parsley-required-message="Адрес является обязательным">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="password">Пароль</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+          </div>
+          <input id="password" name="password" type="password" class="form-control w-400" required data-parsley-required-message="Пароль является обязательным">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="password_confirm">Подтверждение пароля</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+          </div>
+          <input id="password_confirm" name="password_confirm" type="password" class="form-control w-400" required data-parsley-required-message="Необходимо повторить пароль" data-parsley-equalto="#password" data-parsley-equalto-message="Пароли не совпадают">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Сохранить">
+        <a class="btn btn-outline-secondary" href="/admin/users">Отмена</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{template "footer" .}}
+{{end}}
