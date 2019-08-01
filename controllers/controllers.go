@@ -61,6 +61,7 @@ func getFuncMap() template.FuncMap {
 		"slides":              homeSlides,
 		"fullResetURL":        fullResetURL,
 		"adminMenuItems":      adminMenuItems,
+		"mapAPIKey":           mapAPIKey,
 	}
 }
 
@@ -213,4 +214,8 @@ func adminMenuItems() []models.MenuItem {
 		models.MenuItem{Title: "Настройки", URL: "/admin/settings"},
 		models.MenuItem{Title: "Пользователи", URL: "/admin/users"},
 	}
+}
+
+func mapAPIKey() string {
+	return config.GetConfig().MapAPIKey
 }

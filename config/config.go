@@ -23,6 +23,7 @@ type Config struct {
 	Domain        string `json:"domain"`
 	SessionSecret string `json:"session_secret"`
 	SignupEnabled bool   `json:"signup_enabled"` //always set to false in release mode (config.json)
+	MapAPIKey     string `json:"map_api_key"`
 	Database      DatabaseConfig
 	SMTP          SMTPConfig
 }
