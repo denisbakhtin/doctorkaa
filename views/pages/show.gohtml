@@ -39,8 +39,84 @@
       
       {{noescape .Page.Content}}
     {{end}}
+
   </div>
+
+  {{if .IsContactPage}}
+    {{$map_latitude := getSetting "map_latitude"}}
+    {{$map_longitude := getSetting "map_longitude"}}
+
+    {{if and $map_latitude $map_longitude}}
+        <section id="map-canvas"></section>
+
+        <script>
+          var map;
+          var marker;
+          function initialize() {
+
+              // Create an array of styles.
+              var styles = [{}];
+
+              // Create a new StyledMapType object, passing it the array of styles,
+              // as well as the name to be displayed on the map type control.
+              var styledMap = new google.maps.StyledMapType(styles,
+                  {name: "Styled Map"});
+
+              // Create a map object, and include the MapTypeId to add
+              // to the map type control.
+              var mapOptions = {
+                  zoom: 17,
+                  zoomControl: true,
+                  mapTypeControl: false,
+                  disableDefaultUI: true,
+                  scrollwheel: false,
+                  center: new google.maps.LatLng({{$map_latitude}}, {{$map_longitude}}),
+                  mapTypeControlOptions: {
+                      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+                  }
+              };
+              var map = new google.maps.Map(document.getElementById('map-canvas'),
+                  mapOptions);
+
+              //Associate the styled map with the MapTypeId and set it to display.
+              map.mapTypes.set('map_style', styledMap);
+              map.setMapTypeId('map_style');
+
+              marker = new google.maps.Marker({
+                  position: map.getCenter(),
+                  title:'Rehn & Associates',
+                  animation: google.maps.Animation.DROP,
+                  map: map
+              });
+              google.maps.event.addListener(marker, 'show', toggleBounce);
+          }
+
+          function toggleBounce() {
+              if (marker.getAnimation() != null) {
+                  marker.setAnimation(null);
+              } else {
+                  marker.setAnimation(google.maps.Animation.BOUNCE);
+              }
+          }
+
+          //google.maps.event.addDomListener(window, 'load', initialize);
+          function loadScript() {
+              var script = document.createElement('script');
+              script.type = 'text/javascript';
+              script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCgBEExH61pQcBLOje1oWtsX1IZPOSo2DU&callback=initialize';
+              document.body.appendChild(script);
+          }
+
+          //window.onload = loadScript;
+          $(function () {
+              loadScript();
+          })
+      </script>
+    {{end}}
+  {{end}}
 </div>
+
+
 
 {{template "footer" .}}
 {{end}}
