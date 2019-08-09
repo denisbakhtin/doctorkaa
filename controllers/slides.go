@@ -97,6 +97,20 @@ func SlideEdit(c *gin.Context) {
 func SlideUpdate(c *gin.Context) {
 	slide := models.Slide{}
 	db := models.GetDB()
+	err := c.Request.ParseMultipartForm(32 << 20) // ~32MB
+	if err != nil {
+		logrus.Error(err)
+		c.HTML(http.StatusBadRequest, "errors/400", nil)
+		return
+	}
+
+	uri := ""
+	mpartFile, mpartHeader, err := c.Request.FormFile("upload")
+	if mpartFile != nil {
+		defer mpartFile.Close()
+		uri, _ = saveFile(mpartHeader, mpartFile)
+	}
+
 	if err := c.ShouldBind(&slide); err != nil {
 		session := sessions.Default(c)
 		session.AddFlash(err.Error())
@@ -104,6 +118,10 @@ func SlideUpdate(c *gin.Context) {
 		c.Redirect(http.StatusSeeOther, "/admin/slides")
 		return
 	}
+	if len(uri) > 0 {
+		slide.FileURL = uri
+	}
+
 	if err := db.Save(&slide).Error; err != nil {
 		c.HTML(http.StatusInternalServerError, "errors/500", nil)
 		logrus.Error(err)
