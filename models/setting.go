@@ -7,7 +7,7 @@ import (
 
 //Setting type contains settings info
 type Setting struct {
-	ID          uint64 `gorm:"primary_key"`
+	ID          uint64 `gorm:"primary_key" form:"id"`
 	Name        string `binding:"required" form:"name"`
 	Description string `form:"description"`
 	Content     string `form:"content"`
